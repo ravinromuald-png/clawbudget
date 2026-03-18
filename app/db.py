@@ -3,7 +3,7 @@ from flask import current_app, g
 
 def get_db():
     if "db" not in g:
-        g.db = sqlite3.connect(current_app.config["DATABASE_PATH"])
+        g.db = sqlite3.connect(current_app.config.get("DATABASE_PATH", "clawbudget.db"))
         g.db.row_factory = sqlite3.Row
     return g.db
 
@@ -14,7 +14,7 @@ def close_db(e=None):
 
 def init_db(app):
     with app.app_context():
-        db = sqlite3.connect(app.config["DATABASE_PATH"])
+        db = sqlite3.connect(app.config.get("DATABASE_PATH", "clawbudget.db"))
 
         db.executescript("""
         CREATE TABLE IF NOT EXISTS sessions (

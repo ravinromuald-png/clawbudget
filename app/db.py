@@ -54,3 +54,25 @@ def init_db(app):
             """)
         db.commit()
         db.close()
+def insert_session(session):
+    db = get_db()
+    db.execute("""
+        INSERT INTO sessions (
+            ts, agent_name, model_name,
+            input_tokens, output_tokens,
+            saved_tokens, estimated_cost,
+            saved_cost, status
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (
+        session["ts"],
+        session["agent_name"],
+        session["model_name"],
+        session.get("input_tokens", 0),
+        session.get("output_tokens", 0),
+        session.get("saved_tokens", 0),
+        session.get("estimated_cost", 0),
+        session.get("saved_cost", 0),
+        session.get("status", "ok")
+    ))
+    db.commit()

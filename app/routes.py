@@ -1,10 +1,7 @@
-from flask import Blueprint, render_template_string
+from flask import Blueprint, render_template
 
 bp = Blueprint("main", __name__)
 
 @bp.route("/")
 def dashboard():
-    return render_template_string("""
-    <h1>ClawBudget</h1>
-    <p>Déploiement Render OK</p>
-    """)
+    return render_template("dashboard.html")

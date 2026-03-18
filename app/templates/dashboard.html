@@ -11,19 +11,19 @@
 <section class="cards">
   <div class="card">
     <h2>Coût du jour</h2>
-    <p class="metric">0,00 €</p>
+    <p class="metric">{{ "%.2f"|format(cost_today) }} €</p>
+  </div>
+  <div class="card">
+    <h2>Tokens économisés</h2>
+    <p class="metric">{{ saved_tokens }}</p>
   </div>
   <div class="card">
     <h2>Sessions</h2>
-    <p class="metric">0</p>
+    <p class="metric">{{ session_count }}</p>
   </div>
   <div class="card">
     <h2>Alertes</h2>
-    <p class="metric">0</p>
-  </div>
-  <div class="card">
-    <h2>Status</h2>
-    <p class="metric ok">Live</p>
+    <p class="metric">{{ alert_count }}</p>
   </div>
 </section>
 
@@ -36,13 +36,21 @@
         <th>Agent</th>
         <th>Modèle</th>
         <th>Coût</th>
+        <th>Tokens économisés</th>
         <th>Status</th>
       </tr>
     </thead>
     <tbody>
+      {% for s in recent_sessions %}
       <tr>
-        <td colspan="5" class="empty">Aucune session pour le moment.</td>
+        <td>{{ s["ts"] }}</td>
+        <td>{{ s["agent_name"] }}</td>
+        <td>{{ s["model_name"] }}</td>
+        <td>{{ "%.2f"|format(s["estimated_cost"]) }} €</td>
+        <td>{{ s["saved_tokens"] }}</td>
+        <td>{{ s["status"] }}</td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </section>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}ClawBudget Dashboard{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>ClawBudget</h1>
+  <p>Surveillance des coûts, alertes et garde-fous pour OpenClaw.</p>
+</section>
+
+<section class="cards">
+  <div class="card">
+    <h2>Coût du jour</h2>
+    <p class="metric">0,00 €</p>
+  </div>
+  <div class="card">
+    <h2>Sessions</h2>
+    <p class="metric">0</p>
+  </div>
+  <div class="card">
+    <h2>Alertes</h2>
+    <p class="metric">0</p>
+  </div>
+  <div class="card">
+    <h2>Status</h2>
+    <p class="metric ok">Live</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Recent sessions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Heure</th>
+        <th>Agent</th>
+        <th>Modèle</th>
+        <th>Coût</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5" class="empty">Aucune session pour le moment.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}

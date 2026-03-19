@@ -1,9 +1,10 @@
 import json
 from pathlib import Path
+from datetime import datetime
 
 logs = [
     {
-        "ts": "2026-03-18 18:10",
+        "ts": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "agent_name": "email-agent",
         "model_name": "cheap-model",
         "input_tokens": 14000,
@@ -14,7 +15,7 @@ logs = [
         "status": "ok"
     },
     {
-        "ts": "2026-03-18 18:12",
+        "ts": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "agent_name": "browser-agent",
         "model_name": "premium-model",
         "input_tokens": 26000,
@@ -25,7 +26,7 @@ logs = [
         "status": "cut"
     },
     {
-        "ts": "2026-03-18 18:14",
+        "ts": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "agent_name": "calendar-agent",
         "model_name": "cheap-model",
         "input_tokens": 8000,
@@ -39,8 +40,8 @@ logs = [
 
 output_path = Path("fake_openclaw_logs.jsonl")
 
-with output_path.open("w", encoding="utf-8") as f:
+with output_path.open("a", encoding="utf-8") as f:
     for row in logs:
         f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
-print(f"Fake logs written to {output_path}")
+print(f"Fake logs appended to {output_path}")

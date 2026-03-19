@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Sessions - ClawBudget{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Sessions</h1>
+  <p>Liste complète des sessions importées dans ClawBudget.</p>
+</section>
+
+<section class="panel">
+  <h2>All sessions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Heure</th>
+        <th>Agent</th>
+        <th>Modèle</th>
+        <th>Input</th>
+        <th>Output</th>
+        <th>Tokens économisés</th>
+        <th>Coût</th>
+        <th>Coût évité</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in sessions %}
+      <tr>
+        <td>{{ s["ts"] }}</td>
+        <td>{{ s["agent_name"] }}</td>
+        <td>{{ s["model_name"] }}</td>
+        <td>{{ s["input_tokens"] }}</td>
+        <td>{{ s["output_tokens"] }}</td>
+        <td>{{ s["saved_tokens"] }}</td>
+        <td>{{ "%.2f"|format(s["estimated_cost"]) }} €</td>
+        <td>{{ "%.2f"|format(s["saved_cost"]) }} €</td>
+        <td>{{ s["status"] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

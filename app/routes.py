@@ -42,3 +42,16 @@ def dashboard():
         alert_count=alert_count,
         recent_sessions=recent_sessions
     )
+
+@bp.route("/sessions")
+def sessions():
+    db = get_db()
+
+    all_sessions = db.execute("""
+        SELECT ts, agent_name, model_name, input_tokens, output_tokens,
+               saved_tokens, estimated_cost, saved_cost, status
+        FROM sessions
+        ORDER BY id DESC
+    """).fetchall()
+
+    return render_template("sessions.html", sessions=all_sessions)

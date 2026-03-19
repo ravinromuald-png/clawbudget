@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+clawbudget.db
+fake_openclaw_logs.jsonl
+.venv/
+__pycache__/
+*.pyc
